@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concept.Repository.EF", "Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concept.Application.Service", "Concept.Application.Service\Concept.Application.Service.csproj", "{001CA550-2CC9-4B7F-8627-0175619E16A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concept.WebAPI", "Concept.WebAPI\Concept.WebAPI.csproj", "{9BD44E34-1901-4A1D-8828-A19F84A457B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{001CA550-2CC9-4B7F-8627-0175619E16A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{001CA550-2CC9-4B7F-8627-0175619E16A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{001CA550-2CC9-4B7F-8627-0175619E16A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BD44E34-1901-4A1D-8828-A19F84A457B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BD44E34-1901-4A1D-8828-A19F84A457B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BD44E34-1901-4A1D-8828-A19F84A457B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BD44E34-1901-4A1D-8828-A19F84A457B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
