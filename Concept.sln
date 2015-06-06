@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concept.Infrastructure.Comm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concept.Domain", "Concept.Domain\Concept.Domain.csproj", "{E43FC308-36D3-4440-9403-892592B5F6DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concept.Repository.EF", "Concept.Repository.EF\Concept.Repository.EF.csproj", "{A8E9C4B1-89F0-4B57-855A-33C3E99F6E61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{E43FC308-36D3-4440-9403-892592B5F6DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E43FC308-36D3-4440-9403-892592B5F6DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E43FC308-36D3-4440-9403-892592B5F6DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8E9C4B1-89F0-4B57-855A-33C3E99F6E61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8E9C4B1-89F0-4B57-855A-33C3E99F6E61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8E9C4B1-89F0-4B57-855A-33C3E99F6E61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8E9C4B1-89F0-4B57-855A-33C3E99F6E61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
