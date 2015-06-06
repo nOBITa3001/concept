@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concept.Domain", "Concept.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concept.Repository.EF", "Concept.Repository.EF\Concept.Repository.EF.csproj", "{A8E9C4B1-89F0-4B57-855A-33C3E99F6E61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concept.Application.Service", "Concept.Application.Service\Concept.Application.Service.csproj", "{001CA550-2CC9-4B7F-8627-0175619E16A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A8E9C4B1-89F0-4B57-855A-33C3E99F6E61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8E9C4B1-89F0-4B57-855A-33C3E99F6E61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8E9C4B1-89F0-4B57-855A-33C3E99F6E61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{001CA550-2CC9-4B7F-8627-0175619E16A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{001CA550-2CC9-4B7F-8627-0175619E16A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{001CA550-2CC9-4B7F-8627-0175619E16A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{001CA550-2CC9-4B7F-8627-0175619E16A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
