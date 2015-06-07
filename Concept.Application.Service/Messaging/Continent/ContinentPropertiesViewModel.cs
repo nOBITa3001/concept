@@ -1,11 +1,7 @@
 ﻿namespace Concept.Application.Service.Messaging.Continent
 {
-	public class ContinentPropertiesViewModel
+	public class ContinentPropertiesViewModel : PropertiesViewModelBase
 	{
 		public string Name { get; set; }
-
-		public int RecStatus { get; set; }
-
-		public string UserName { get; set; }
 	}
 }

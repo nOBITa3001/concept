@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="Implementation\ApplicationServiceBase.cs" />
     <Compile Include="Implementation\ContinentService.cs" />
+    <Compile Include="Implementation\CountryService.cs" />
     <Compile Include="Interface\IContinentService.cs" />
+    <Compile Include="Interface\ICountryService.cs" />
     <Compile Include="Messaging\Continent\ContinentPropertiesViewModel.cs" />
     <Compile Include="Messaging\Continent\DeleteContinentRequest.cs" />
     <Compile Include="Messaging\Continent\DeleteContinentResponse.cs" />
@@ -53,6 +55,17 @@
     <Compile Include="Messaging\Continent\InsertContinentRequest.cs" />
     <Compile Include="Messaging\Continent\SaveContinentResponse.cs" />
     <Compile Include="Messaging\Continent\UpdateContinentRequest.cs" />
+    <Compile Include="Messaging\Country\CountryPropertiesViewModel.cs" />
+    <Compile Include="Messaging\Country\DeleteCountryRequest.cs" />
+    <Compile Include="Messaging\Country\DeleteCountryResponse.cs" />
+    <Compile Include="Messaging\Country\GetCountriesQueryResponse.cs" />
+    <Compile Include="Messaging\Country\GetCountriesResponse.cs" />
+    <Compile Include="Messaging\Country\GetCountryRequest.cs" />
+    <Compile Include="Messaging\Country\GetCountryResponse.cs" />
+    <Compile Include="Messaging\Country\InsertCountryRequest.cs" />
+    <Compile Include="Messaging\Country\SaveCountryResponse.cs" />
+    <Compile Include="Messaging\Country\UpdateCountryRequest.cs" />
+    <Compile Include="Messaging\PropertiesViewModelBase.cs" />
     <Compile Include="Messaging\ServiceRequestBase.cs" />
     <Compile Include="Messaging\ServiceResponseBase.cs" />
     <Compile Include="Messaging\StringIDRequest.cs" />

@@ -1,8 +1,8 @@
 ﻿namespace Concept.Repository.EF.Repository
 {
-	using Enum;
 	using Conversion;
 	using Domain.Continent;
+	using Enum;
 	using Infrastructure.Common.Domain;
 	using Infrastructure.Common.UnitOfWork;
 	using System;
@@ -62,7 +62,7 @@
 								select x);
 			if (continents != null && continents.Any())
 			{
-				result = EntityConverter.ConvertToContinentDomainTypes(continents);
+				result = EntityConverter.ConvertToContinentsDomainType(continents);
 			}
 
 			return result;
