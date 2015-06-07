@@ -239,6 +239,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ContinentController.cs" />
+    <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Conversion\DomainConverter.cs" />
@@ -250,6 +251,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ContinentItemViewModel.cs" />
     <Compile Include="ViewModels\ContinentViewModel.cs" />
+    <Compile Include="ViewModels\CountryItemViewModel.cs" />
+    <Compile Include="ViewModels\CountryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

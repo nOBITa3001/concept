@@ -24,8 +24,11 @@
 			ODataModelBuilder builder = new ODataConventionModelBuilder();
 			builder.EntitySet<ContinentViewModel>("Continent");
 			builder.EntitySet<ContinentItemViewModel>("ContinentItem");
+			builder.EntitySet<CountryViewModel>("Country");
+			builder.EntitySet<CountryItemViewModel>("CountryItem");
 			config.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
 
+			// Setup return json instead
 			var json = config.Formatters.JsonFormatter;
 			json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.None;
 			config.Formatters.Remove(config.Formatters.XmlFormatter);

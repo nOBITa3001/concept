@@ -5,6 +5,7 @@ namespace Concept.WebAPI.App_Start
 	using Application.Service.Implementation;
 	using Application.Service.Interface;
 	using Domain.Continent;
+	using Domain.Country;
 	using Infrastructure.Common.UnitOfWork;
 	using Repository.EF;
 	using Repository.EF.Repository;
@@ -34,8 +35,19 @@ namespace Concept.WebAPI.App_Start
 
 		private static void InitializeContainer(Container container)
 		{
+			#region Services
+
 			container.RegisterWebApiRequest<IContinentService, ContinentService>();
+			container.RegisterWebApiRequest<ICountryService, CountryService>();
+
+			#endregion
+
+			#region Repositories
+
 			container.RegisterWebApiRequest<IContinentRepository, ContinentRepository>();
+			container.RegisterWebApiRequest<ICountryRepository, CountryRepository>();
+
+			#endregion
 
 			container.Register(() =>
 			{

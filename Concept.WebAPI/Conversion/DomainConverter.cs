@@ -1,48 +1,13 @@
 ﻿namespace Concept.WebAPI.Conversion
 {
 	using Domain.Continent;
+	using Domain.Country;
 	using System.Linq;
 	using ViewModels;
 
 	public static class DomainConverter
 	{
-		public static ContinentViewModel ConvertToContinentViewModelType(Continent domain)
-		{
-			var result = default(ContinentViewModel);
-
-			if (domain != null)
-			{
-				result = new ContinentViewModel()
-				{
-					ID = domain.ID
-					, Name = domain.Name
-					, RecStatus = domain.RecStatus
-				};
-			}
-
-			return result;
-		}
-
-		public static ContinentItemViewModel ConvertToContinentItemViewModelType(Continent domain)
-		{
-			var result = default(ContinentItemViewModel);
-
-			if (domain != null)
-			{
-				result = new ContinentItemViewModel()
-				{
-					ID = domain.ID
-					, Name = domain.Name
-					, RecStatus = domain.RecStatus
-					, RecCreatedBy = domain.RecCreatedBy
-					, RecCreatedWhen = domain.RecCreatedWhen
-					, RecModifyBy = domain.RecModifyBy
-					, RecModifyWhen = domain.RecModifyWhen
-				};
-			}
-
-			return result;
-		}
+		#region Continent
 
 		public static IQueryable<ContinentViewModel> ConvertToContinentViewModelQuery(IQueryable<Continent> query)
 		{
@@ -81,5 +46,61 @@
 
 			return result;
 		}
+
+		#endregion
+
+		#region Country
+
+		public static IQueryable<CountryViewModel> ConvertToCountryViewModelQuery(IQueryable<Country> query)
+		{
+			var result = default(IQueryable<CountryViewModel>);
+
+			if (query != null)
+			{
+				result = query.Select(x => new CountryViewModel()
+				{
+					ID = x.ID
+					, Name = x.Name
+					, ContinentID = x.ContinentID
+					, ContinentName = x.Continent.Name
+					, LanguageID = x.LanguageID
+					, LanguageName = x.Language.Name
+					, CurrencyID = x.CurrencyID
+					, CurrencyName = x.Currency.Name
+					, RecStatus = x.RecStatus
+				});
+			}
+
+			return result;
+		}
+
+		public static IQueryable<CountryItemViewModel> ConvertToCountryItemViewModelQuery(IQueryable<Country> query)
+		{
+			var result = default(IQueryable<CountryItemViewModel>);
+
+			if (query != null)
+			{
+				result = query.Select(x => new CountryItemViewModel()
+				{
+					ID = x.ID
+					, Name = x.Name
+					, ContinentID = x.ContinentID
+					, ContinentName = x.Continent.Name
+					, LanguageID = x.LanguageID
+					, LanguageName = x.Language.Name
+					, CurrencyID = x.CurrencyID
+					, CurrencyName = x.Currency.Name
+					, RecStatus = x.RecStatus
+					, RecCreatedBy = x.RecCreatedBy
+					, RecCreatedWhen = x.RecCreatedWhen
+					, RecModifyBy = x.RecModifyBy
+					, RecModifyWhen = x.RecModifyWhen
+				});
+			}
+
+			return result;
+		}
+
+		#endregion
 	}
 }
