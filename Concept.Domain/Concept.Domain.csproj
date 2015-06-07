@@ -36,6 +36,15 @@
     <Compile Include="Continent\Continent.cs" />
     <Compile Include="Continent\ContinentBusinessRule.cs" />
     <Compile Include="Continent\IContinentRepository.cs" />
+    <Compile Include="Country\Country.cs" />
+    <Compile Include="Country\CountryBusinessRule.cs" />
+    <Compile Include="Country\ICountryRepository.cs" />
+    <Compile Include="Currency\Currency.cs" />
+    <Compile Include="Currency\CurrencyBusinessRule.cs" />
+    <Compile Include="Currency\ICurrencyRepository.cs" />
+    <Compile Include="Language\ILanguageRepository.cs" />
+    <Compile Include="Language\Language.cs" />
+    <Compile Include="Language\LanguageBusinessRule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
