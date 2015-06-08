@@ -240,6 +240,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ContinentController.cs" />
     <Compile Include="Controllers\CountryController.cs" />
+    <Compile Include="Controllers\CountryLanguageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Conversion\DomainConverter.cs" />
@@ -252,6 +253,8 @@
     <Compile Include="ViewModels\ContinentItemViewModel.cs" />
     <Compile Include="ViewModels\ContinentViewModel.cs" />
     <Compile Include="ViewModels\CountryItemViewModel.cs" />
+    <Compile Include="ViewModels\CountryLanguageItemViewModel.cs" />
+    <Compile Include="ViewModels\CountryLanguageViewModel.cs" />
     <Compile Include="ViewModels\CountryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -95,5 +95,28 @@
 		}
 
 		#endregion
+
+		#region Country
+
+		public static InsertCountryLanguageRequest ConvertToInsertCountryLanguageRequestType(CountryLanguageViewModel viewmodel)
+		{
+			var result = default(InsertCountryLanguageRequest);
+
+			if (viewmodel != null)
+			{
+				result = new InsertCountryLanguageRequest(viewmodel.CountryID, viewmodel.LanguageID)
+				{
+					CountryLanguageProperties = new CountryLanguagePropertiesViewModel()
+					{
+						CountryName = viewmodel.CountryLanguageName
+						, RecStatus = viewmodel.RecStatus
+					}
+				};
+			}
+
+			return result;
+		}
+
+		#endregion
 	}
 }

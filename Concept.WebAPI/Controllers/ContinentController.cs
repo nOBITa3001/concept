@@ -230,7 +230,7 @@
 		/// <summary>
 		/// Applies filtering and sorting by checking ODataQueryOption and disaplyAll querystring.
 		/// </summary>
-		private IQueryable<ContinentViewModel> ApplyFilteringAndSorting(ref IQueryable<ContinentViewModel> query, ODataQueryOptions opts, bool displayAll)
+		private void ApplyFilteringAndSorting(ref IQueryable<ContinentViewModel> query, ODataQueryOptions opts, bool displayAll)
 		{
 			// Sets default filtering.
 			if (this.DisplayAllContinents(opts, displayAll))
@@ -243,8 +243,6 @@
 			{
 				query = query.OrderBy(x => x.Name);
 			}
-
-			return query;
 		}
 
 		/// <summary>
