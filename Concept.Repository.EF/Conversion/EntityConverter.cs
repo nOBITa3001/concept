@@ -4,6 +4,8 @@
 	using System.Linq;
 	using ContinentDomain = Domain.Continent;
 	using CountryDomain = Domain.Country;
+	using LanguageDomain = Domain.Language;
+	using CurrencyDomain = Domain.Currency;
 
 	public static class EntityConverter
 	{
@@ -95,7 +97,7 @@
 						, RecModifyWhen = entity.continent.recModifyWhen
 					}
 					, LanguageID = entity.languageID
-					, Language = new Domain.Language.Language()
+					, Language = new LanguageDomain.Language()
 					{
 						ID = entity.language.languageID
 						, Name = entity.language.languageName
@@ -108,7 +110,7 @@
 						, RecModifyWhen = entity.language.recModifyWhen
 					}
 					, CurrencyID = entity.currencyID
-					, Currency = new Domain.Currency.Currency()
+					, Currency = new CurrencyDomain.Currency()
 					{
 						ID = entity.currency.currencyID
 						, Name = entity.currency.currencyName
@@ -172,7 +174,7 @@
 						, RecModifyWhen = x.continent.recModifyWhen
 					}
 					, LanguageID = x.languageID
-					, Language = new Domain.Language.Language()
+					, Language = new LanguageDomain.Language()
 					{
 						ID = x.language.languageID
 						, Name = x.language.languageName
@@ -185,7 +187,7 @@
 						, RecModifyWhen = x.language.recModifyWhen
 					}
 					, CurrencyID = x.currencyID
-					, Currency = new Domain.Currency.Currency()
+					, Currency = new CurrencyDomain.Currency()
 					{
 						ID = x.currency.currencyID
 						, Name = x.currency.currencyName
@@ -197,6 +199,127 @@
 						, RecCreatedWhen = x.currency.recCreatedWhen
 						, RecModifyBy = x.currency.recModifyBy
 						, RecModifyWhen = x.currency.recModifyWhen
+					}
+					, RecStatus = x.recStatus
+					, RecCreatedBy = x.recCreatedBy
+					, RecCreatedWhen = x.recCreatedWhen
+					, RecModifyBy = x.recModifyBy
+					, RecModifyWhen = x.recModifyWhen
+				});
+			}
+
+			return result;
+		}
+
+		#endregion
+
+		#region CountryLanguage
+
+		public static CountryDomain.CountryLanguage ConvertToCountryLanguageDomainType(Models.CountryLanguage entity)
+		{
+			var result = default(CountryDomain.CountryLanguage);
+
+			if (entity != null)
+			{
+				result = new CountryDomain.CountryLanguage()
+				{
+					ID = new CountryDomain.CountryLanguageID()
+					{
+						CountryID = entity.countryID
+						, LanguageID = entity.languageID
+					}
+					, Country = new CountryDomain.Country()
+					{
+						ID = entity.country.countryID
+						, Name = entity.country.countryName
+						, ContinentID = entity.country.continentID
+						, LanguageID = entity.country.languageID
+						, CurrencyID = entity. country.currencyID
+						, RecStatus = entity.country.recStatus
+						, RecCreatedBy = entity.country.recCreatedBy
+						, RecCreatedWhen = entity.country.recCreatedWhen
+						, RecModifyBy = entity.country.recModifyBy
+						, RecModifyWhen = entity.country.recModifyWhen
+					}
+					, Language = new LanguageDomain.Language()
+					{
+						ID = entity.language.languageID
+						, Name = entity.language.languageName
+						, NativeName = entity.language.languageNativeName
+						, Fallback = entity.language.languageFallback
+						, RecStatus = entity.language.recStatus
+						, RecCreatedBy = entity.language.recCreatedBy
+						, RecCreatedWhen = entity.language.recCreatedWhen
+						, RecModifyBy = entity.language.recModifyBy
+						, RecModifyWhen = entity.language.recModifyWhen
+					}
+					, RecStatus = entity.recStatus
+					, RecCreatedBy = entity.recCreatedBy
+					, RecCreatedWhen = entity.recCreatedWhen
+					, RecModifyBy = entity.recModifyBy
+					, RecModifyWhen = entity.recModifyWhen
+				};
+			}
+
+			return result;
+		}
+
+		public static IEnumerable<CountryDomain.CountryLanguage> ConvertToCountryLanguagesDomainType(IEnumerable<Models.CountryLanguage> entities)
+		{
+			var result = default(IEnumerable<CountryDomain.CountryLanguage>);
+
+			if (entities != null && entities.Any())
+			{
+				var domains = new List<CountryDomain.CountryLanguage>();
+				foreach (var entity in entities)
+				{
+					domains.Add(ConvertToCountryLanguageDomainType(entity));
+				}
+
+				result = domains;
+			}
+
+			return result;
+		}
+
+		public static IQueryable<CountryDomain.CountryLanguage> ConvertToCountryLanguageDomainQuery(IQueryable<Models.CountryLanguage> query)
+		{
+			var result = default(IQueryable<CountryDomain.CountryLanguage>);
+
+			if (query != null)
+			{
+				result = query.Select(x => new CountryDomain.CountryLanguage()
+				{
+					ID = new CountryDomain.CountryLanguageID()
+					{
+						CountryID = x.countryID
+						, LanguageID = x.languageID
+					}
+					, CountryName = x.countryName
+					, Country = new CountryDomain.Country()
+					{
+						ID = x.country.countryID
+						, Name = x.country.countryName
+						, ContinentID = x.country.continentID
+						, LanguageID = x.country.languageID
+						, CurrencyID = x. country.currencyID
+							, RecStatus = x.country.recStatus
+							, RecCreatedBy = x.country.recCreatedBy
+							, RecCreatedWhen = x.country.recCreatedWhen
+							, RecModifyBy = x.country.recModifyBy
+							, RecModifyWhen = x.country.recModifyWhen
+					}
+					, Language = new LanguageDomain.Language()
+					{
+						ID = x.language.languageID
+						, Name = x.language.languageName
+						, NativeName = x.language.languageNativeName
+						, Fallback = x.language.languageFallback
+						, RecStatus = x.language.recStatus
+						, RecCreatedBy = x.language.recCreatedBy
+						, RecCreatedWhen = x.language.recCreatedWhen
+						, RecModifyBy = x.language.recModifyBy
+						, RecModifyWhen = x.language.recModifyWhen
 					}
 					, RecStatus = x.recStatus
 					, RecCreatedBy = x.recCreatedBy
