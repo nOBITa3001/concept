@@ -39,6 +39,8 @@
 			}
 		}
 
+		#region Country
+
 		public GetCountryResponse Get(GetCountryRequest getCountryRequest)
 		{
 			var result = new GetCountryResponse();
@@ -188,7 +190,87 @@
 
 		#endregion
 
+		#region CountryLanguage
+
+		public GetCountryLanguagesQueryResponse GetAllCountryLanguageQuery()
+		{
+			var result = new GetCountryLanguagesQueryResponse();
+
+			try
+			{
+				result.Query = this.countryRepository.GetAllCountryLanguageQuery();
+			}
+			catch (Exception ex)
+			{
+				result.Exception = ex;
+			}
+
+			return result;
+		}
+
+		public async Task<SaveCountryLanguageResponse> InsertCountryLanguageAsync(InsertCountryLanguageRequest insertCountryLanguageRequest)
+		{
+			var result = new SaveCountryLanguageResponse();
+
+			try
+			{
+				var newCountryLanguage = this.AssignPropertiesToCountryLanguageDomainType(insertCountryLanguageRequest.CountryLanguageProperties);
+				if (newCountryLanguage == null)
+				{
+					throw new ArgumentNullException("CountryLanguageProperties in CountryService");
+				}
+				else
+				{
+					this.AssignInsertCountryLanguagePropertiesToCountryLanguageDomainType(ref newCountryLanguage, insertCountryLanguageRequest);
+
+					this.ThrowExceptionIfCountryLanguageIsInvalid(newCountryLanguage);
+
+					this.countryRepository.InsertCountryLanguage(newCountryLanguage);
+					await this.UnitOfWork.CommitAsync();
+				}
+			}
+			catch (Exception ex)
+			{
+				result.Exception = ex;
+			}
+
+			return result;
+		}
+
+		public async Task<DeleteCountryLanguageResponse> DeleteCountryLanguageAsync(DeleteCountryLanguageRequest deleteCountryLanguageRequest)
+		{
+			var result = new DeleteCountryLanguageResponse();
+
+			try
+			{
+				var deleteCountryLanguage = this.AssignPropertiesToCountryLanguageDomainType(deleteCountryLanguageRequest.CountryLanguageProperties);
+				if (deleteCountryLanguage == null)
+				{
+					throw new ArgumentNullException("CountryLanguageProperties in CountryService");
+				}
+				else
+				{
+					this.AssignDeleteCountryLanguagePropertiesToCountryLanguageDomainType(ref deleteCountryLanguage, deleteCountryLanguageRequest);
+
+					this.countryRepository.DeleteCountryLanguage(deleteCountryLanguage);
+					await this.UnitOfWork.CommitAsync();
+				}
+			}
+			catch (Exception ex)
+			{
+				result.Exception = ex;
+			}
+
+			return result;
+		}
+
+		#endregion
+
+		#endregion
+
 		#region Methods
+
+		#region Country
 
 		private void ThrowExceptionIfCountryIsInvalid(Country country)
 		{
@@ -257,6 +339,66 @@
 				domainToBeUpdate.RecModifyWhen = DateTime.Now;
 			}
 		}
+
+		#endregion
+
+		#region CountryLanguage
+
+		private void ThrowExceptionIfCountryLanguageIsInvalid(CountryLanguage countryLanguage)
+		{
+			var brokenRules = countryLanguage.GetBrokenRules();
+			if (brokenRules != null && brokenRules.Any())
+			{
+				var brokenRulesBuilder = new StringBuilder();
+				brokenRulesBuilder.AppendLine("There were problems saving the country language object:");
+				foreach (var brokenRule in brokenRules)
+				{
+					brokenRulesBuilder.AppendLine(brokenRule.RuleDescription);
+				}
+
+				throw new Exception(brokenRulesBuilder.ToString());
+			}
+		}
+
+		private CountryLanguage AssignPropertiesToCountryLanguageDomainType(CountryLanguagePropertiesViewModel properties)
+		{
+			var result = default(CountryLanguage);
+
+			if (properties != null)
+			{
+				result = new CountryLanguage()
+				{
+					CountryName = properties.CountryName
+					, RecStatus = properties.RecStatus
+				};
+			}
+
+			return result;
+		}
+
+		private void AssignInsertCountryLanguagePropertiesToCountryLanguageDomainType(ref CountryLanguage domainToBeUpdate
+																						, InsertCountryLanguageRequest insertCountryLanguageRequest)
+		{
+			if (domainToBeUpdate != null && insertCountryLanguageRequest != null)
+			{
+				domainToBeUpdate.ID = insertCountryLanguageRequest.ID;
+				domainToBeUpdate.RecCreatedBy = insertCountryLanguageRequest.CountryLanguageProperties.UserName;
+				domainToBeUpdate.RecCreatedWhen = DateTime.Now;
+			}
+		}
+
+		private void AssignDeleteCountryLanguagePropertiesToCountryLanguageDomainType(ref CountryLanguage domainToBeUpdate
+																						, DeleteCountryLanguageRequest deleteCountryLanguageRequest)
+		{
+			if (domainToBeUpdate != null && deleteCountryLanguageRequest != null)
+			{
+				domainToBeUpdate.ID = deleteCountryLanguageRequest.ID;
+				domainToBeUpdate.RecModifyBy = deleteCountryLanguageRequest.CountryLanguageProperties.UserName;
+				domainToBeUpdate.RecModifyWhen = DateTime.Now;
+			}
+		}
+
+		#endregion
 
 		#endregion
 	}

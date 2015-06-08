@@ -38,6 +38,9 @@
     <Compile Include="Continent\IContinentRepository.cs" />
     <Compile Include="Country\Country.cs" />
     <Compile Include="Country\CountryBusinessRule.cs" />
+    <Compile Include="Country\CountryLanguage.cs" />
+    <Compile Include="Country\CountryLanguageBusinessRule.cs" />
+    <Compile Include="Country\CountryLanguageID.cs" />
     <Compile Include="Country\ICountryRepository.cs" />
     <Compile Include="Currency\Currency.cs" />
     <Compile Include="Currency\CurrencyBusinessRule.cs" />

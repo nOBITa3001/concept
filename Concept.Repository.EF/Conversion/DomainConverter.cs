@@ -1,5 +1,7 @@
 ﻿namespace Concept.Repository.EF.Conversion
 {
+	using Models;
+	using System;
 	using ContinentDomain = Domain.Continent;
 	using CountryDomain = Domain.Country;
 
@@ -7,13 +9,13 @@
 	{
 		#region Continent
 
-		public static Models.Continent ConvertToContinentEntityType(ContinentDomain.Continent domain)
+		public static Continent ConvertToContinentEntityType(ContinentDomain.Continent domain)
 		{
-			var result = default(Models.Continent);
+			var result = default(Continent);
 
 			if (domain != null)
 			{
-				result = new Models.Continent()
+				result = new Continent()
 				{
 					continentID = domain.ID
 					, continentName = domain.Name
@@ -32,19 +34,45 @@
 
 		#region Country
 
-		public static Models.Country ConvertToCountryEntityType(CountryDomain.Country domain)
+		public static Country ConvertToCountryEntityType(CountryDomain.Country domain)
 		{
-			var result = default(Models.Country);
+			var result = default(Country);
 
 			if (domain != null)
 			{
-				result = new Models.Country()
+				result = new Country()
 				{
 					countryID = domain.ID
 					, countryName = domain.Name
 					, continentID = domain.ContinentID
 					, languageID = domain.LanguageID
 					, currencyID = domain.CurrencyID
+					, recStatus = domain.RecStatus
+					, recCreatedBy = domain.RecCreatedBy
+					, recCreatedWhen = domain.RecCreatedWhen
+					, recModifyBy = domain.RecModifyBy
+					, recModifyWhen = domain.RecModifyWhen
+				};
+			}
+
+			return result;
+		}
+
+		#endregion
+
+		#region CountryLanguage
+
+		public static CountryLanguage ConvertToCountryLanguageEntityType(CountryDomain.CountryLanguage domain)
+		{
+			var result = default(CountryLanguage);
+
+			if (domain != null)
+			{
+				result = new CountryLanguage()
+				{
+					countryID = domain.ID.CountryID
+					, languageID = domain.ID.LanguageID
+					, countryName = domain.CountryName
 					, recStatus = domain.RecStatus
 					, recCreatedBy = domain.RecCreatedBy
 					, recCreatedWhen = domain.RecCreatedWhen

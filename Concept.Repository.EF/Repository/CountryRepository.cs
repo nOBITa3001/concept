@@ -24,6 +24,8 @@
 
 		#region Implementations
 
+		#region Country
+
 		public override Country Get(string id)
 		{
 			var result = default(Country);
@@ -80,10 +82,52 @@
 		public IQueryable<Country> GetAllQuery()
 		{
 			var query = (from x in this.DbContext.Countries
-						 select x);
+							select x);
 
 			return EntityConverter.ConvertToCountryDomainQuery(query);
 		}
+
+		#endregion
+
+		#region CountryLanguage
+
+		public async Task<CountryLanguage> GetCountryLanguageAsync(CountryLanguageID id)
+		{
+			var result = default(CountryLanguage);
+
+			var countryLanguage = await(from x in this.DbContext.CountryLanguages
+										.Include(x => x.country)
+										.Include(x => x.language)
+										where x.countryID.Equals(id.CountryID, StringComparison.InvariantCultureIgnoreCase)
+												&& x.languageID.Equals(id.LanguageID, StringComparison.InvariantCultureIgnoreCase)
+										select x).SingleOrDefaultAsync();
+			if (countryLanguage != null)
+			{
+				result = EntityConverter.ConvertToCountryLanguageDomainType(countryLanguage);
+			}
+
+			return result;
+		}
+
+		public IQueryable<CountryLanguage> GetAllCountryLanguageQuery()
+		{
+			var query = (from x in this.DbContext.CountryLanguages
+							select x);
+
+			return EntityConverter.ConvertToCountryLanguageDomainQuery(query);
+		}
+
+		public void InsertCountryLanguage(CountryLanguage countryLanguage)
+		{
+			this.UnitOfWork.RegisterInsert(countryLanguage, this);
+		}
+
+		public void DeleteCountryLanguage(CountryLanguage countryLanguage)
+		{
+			this.UnitOfWork.RegisterDelete(countryLanguage, this);
+		}
+
+		#endregion
 
 		public override async Task PersistInsertAsync(IAggregateRoot aggregateRoot)
 		{
@@ -99,6 +143,22 @@
 				else
 				{
 					throw new ArgumentException(string.Concat(newCountry.ID, " already exists."));
+				}
+			}
+			else if (aggregateRoot is CountryLanguage)
+			{
+				var newCountryLanguage = (CountryLanguage)aggregateRoot;
+
+				var existingCountryLanguage = await this.GetCountryLanguageAsync(newCountryLanguage.ID);
+				if (existingCountryLanguage == null)
+				{
+					this.DbContext.CountryLanguages.Add(DomainConverter.ConvertToCountryLanguageEntityType(newCountryLanguage));
+				}
+				else
+				{
+					throw new ArgumentException(string.Format("{0} and {1} already exists."
+																, newCountryLanguage.ID.CountryID
+																, newCountryLanguage.ID.LanguageID));
 				}
 			}
 
@@ -126,8 +186,6 @@
 			await this.DbContext.SaveChangesAsync();
 		}
 
-
-
 		public override async Task PersistDeleteAsync(IAggregateRoot aggregateRoot)
 		{
 			if (aggregateRoot is Country)
@@ -145,6 +203,24 @@
 					throw new ObjectNotFoundException(deleteCountryDomain.ID);
 				}
 			}
+			else if (aggregateRoot is CountryLanguage)
+			{
+				var deleteCountryLanguageDomain = (CountryLanguage)aggregateRoot;
+
+				var existingCountryLanguageEntity = await this.DbContext.CountryLanguages.FindAsync(deleteCountryLanguageDomain.ID.CountryID
+																									, deleteCountryLanguageDomain.ID.LanguageID);
+				if (existingCountryLanguageEntity != null)
+				{
+					this.AssignDeletePropertiesToCountryLanguageEntityType(ref existingCountryLanguageEntity
+																			, deleteCountryLanguageDomain);
+				}
+				else
+				{
+					throw new ObjectNotFoundException(string.Format("{0} {1}"
+																	, deleteCountryLanguageDomain.ID.CountryID
+																	, deleteCountryLanguageDomain.ID.LanguageID));
+				}
+			}
 
 			await this.DbContext.SaveChangesAsync();
 		}
@@ -152,6 +228,8 @@
 		#endregion
 
 		#region Methods
+
+		#region Country
 
 		private void AssignUpdatePropertiesToCountryEntityType(ref Models.Country entityToBeUpdate
 																, Country updateCountryDomain)
@@ -178,6 +256,23 @@
 				entityToBeUpdate.recModifyWhen = deleteCountryDomain.RecModifyWhen;
 			}
 		}
+
+		#endregion
+
+		#region CountryLanguage
+
+		private void AssignDeletePropertiesToCountryLanguageEntityType(ref Models.CountryLanguage entityToBeUpdate
+																		, CountryLanguage deleteCountryLanguageDomain)
+		{
+			if (entityToBeUpdate != null && deleteCountryLanguageDomain != null)
+			{
+				entityToBeUpdate.recStatus = (int)RecordStatus.Delete;
+				entityToBeUpdate.recModifyBy = deleteCountryLanguageDomain.RecModifyBy;
+				entityToBeUpdate.recModifyWhen = deleteCountryLanguageDomain.RecModifyWhen;
+			}
+		}
+
+		#endregion
 
 		#endregion
 	}

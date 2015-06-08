@@ -26,6 +26,8 @@
 			builder.EntitySet<ContinentItemViewModel>("ContinentItem");
 			builder.EntitySet<CountryViewModel>("Country");
 			builder.EntitySet<CountryItemViewModel>("CountryItem");
+			builder.EntitySet<CountryLanguageViewModel>("CountryLanguage");
+			builder.EntitySet<CountryLanguageItemViewModel>("CountryLanguageItem");
 			config.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
 
 			// Setup return json instead
